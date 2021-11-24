@@ -12,22 +12,14 @@ router.get('/', async (req, res, next) => {
     }
 });
 
-router.post('/', (req, res, next) => {
+router.post('/', (req, res, next) => { //no pide esto el pi
     const { name } = req.body;
     return Type.create({name})
     .then((newType) => {
-        newType
         res.status(201).send(newType);
     })
     .catch(error => next(error));
 });
 
-router.put('/', (req, res, next) => {
-    res.send('soy put de type');
-});
-
-router.delete('/', (req, res, next) => {
-    res.send('soy delete de type');
-});
 
 module.exports = router;

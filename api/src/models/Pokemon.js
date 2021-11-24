@@ -14,5 +14,29 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    HP: {
+      type:DataTypes.INTEGER,
+      allowNull: true,
+    },
+    attack: {
+      type:DataTypes.JSON,
+      allowNull: true,
+    },
+    defense: {
+      type:DataTypes.JSON,
+      allowNull: true,
+    },
+    speed: {
+      type:DataTypes.JSON,
+      allowNull: true,
+    },
+    height: {
+      type:DataTypes.INTEGER,
+      allowNull: true,
+    },
+    weight: {
+      type:DataTypes.INTEGER,
+      allowNull: true,
+    }
   });
 };
