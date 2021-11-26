@@ -14,20 +14,20 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    HP: {
+    hp: {
       type:DataTypes.INTEGER,
       allowNull: true,
     },
     attack: {
-      type:DataTypes.JSON,
+      type:DataTypes.INTEGER,
       allowNull: true,
     },
     defense: {
-      type:DataTypes.JSON,
+      type:DataTypes.INTEGER,
       allowNull: true,
     },
     speed: {
-      type:DataTypes.JSON,
+      type:DataTypes.INTEGER,
       allowNull: true,
     },
     height: {
@@ -37,6 +37,11 @@ module.exports = (sequelize) => {
     weight: {
       type:DataTypes.INTEGER,
       allowNull: true,
+    },
+    createdInDb: {
+      type:DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue:true,
     }
   });
 };
