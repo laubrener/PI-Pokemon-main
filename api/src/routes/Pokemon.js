@@ -1,5 +1,4 @@
 const { Router } = require('express');
-const {Op} = require('sequelize');
 const axios = require('axios');
 const { Pokemon, Type } = require('../db');
 
@@ -7,25 +6,6 @@ const { Pokemon, Type } = require('../db');
 const router = Router();
 
 //funciones controladores que traen la info:
-// const getApiInfo = async () => { //va a llamar al endpoint de la api y trae toda la info
-//     const apiUrl = await axios.get('https://pokeapi.co/api/v2/pokemon'); //traigo los primeros 20
-//     const apiUrlNext = await axios.get(apiUrl.data.next); // traigo otros 20
-//     const allPokemons = apiInfo.data.results.concat(apiUrlNext.data.results); //concateno para que me muestre los 40
-    
-//     const apiInfo = await apiUrl.data.results.map(p => {
-//         return {
-//             id: p.id,
-//             name: p.name,
-//             //attack: p.map(el => el.stats[1].base_stat),
-//             //Image: p.url.sprites.front_default,
-//             // type: p.type.map(t => ({ //hago un map porq me devuelve un arreglo
-//             //     name: t.type.name,
-//             //     id: t.slot,
-//             // })),
-//     };
-//     });
-//     return apiInfo;
-// };
 
 const getApiInfo = async () => { //va a llamar al endpoint de la api y trae toda la info
     const apiUrl = await axios.get('https://pokeapi.co/api/v2/pokemon'); //traigo los primeros 20
@@ -100,22 +80,22 @@ router.get('/', async (req, res, next) => {
 });
 
 //funciona para id de la bd pero no para la api
-router.get('/:id', async (req, res) => {
-    const {id} = req.params;
-    const allPokemon = await getAllPokemon();
-    try {
-        if (id) {
-            let pokeId = await allPokemon.filter(p => p.id === id);
-            if (pokeId.length) {
-                return res.status(200).json(pokeId);
-            } else {
-                return res.status(404).send('No existe ese pokemon');
-            }
-        }
-    } catch(error){
-        next(error);
-    }
-});
+// router.get('/:id', async (req, res) => {
+//     const {id} = req.params;
+//     const allPokemon = await getAllPokemon();
+//     try {
+//         if (id) {
+//             let pokeId = await allPokemon.filter(p => p.id === id);
+//             if (pokeId.length) {
+//                 return res.status(200).json(pokeId);
+//             } else {
+//                 return res.status(404).send('No existe ese pokemon');
+//             }
+//         }
+//     } catch(error){
+//         next(error);
+//     }
+// });
 
 router.post('/', async (req, res, next) => { 
     try {
@@ -152,24 +132,38 @@ router.post('/', async (req, res, next) => {
     
 });
 
-// funciona pero me trae todos los datos del pokemon, no solo los q yo quiero
-// router.get('/:id', async (req, res, next) => { // buscar por id un pokemon
-//     try {
-//         const id = req.params.id;
-//         let pokemon;
-//         if (typeof id === 'string' && id.length > 5) {
-//             // es mio
-//             pokemon = await Pokemon.findByPk(id);
-//         } else {
-//             // es de la api
-//             let response = await axios.get('https://pokeapi.co/api/v2/pokemon/' + id);
-//             pokemon = response.data;
-//         }
-//         return res.send(pokemon);
-//     } catch(error) {
-//         next(error); //va al siguiente middleware q es el control de errores
-//     }
-// });
+//funciona pero me trae todos los datos del pokemon, no solo los q yo quiero
+router.get('/:id', async (req, res, next) => { // buscar por id un pokemon
+    try {
+        const id = req.params.id;
+        let pokemonId;
+        if (typeof id === 'string' && id.length > 5) {
+            // es mio
+            pokemonId = await Pokemon.findByPk(id);
+            return res.send(pokemonId);
+        } else {
+            // es de la api
+            let response = await axios.get('https://pokeapi.co/api/v2/pokemon/' + id);
+            let pokemon = { // Genero un arreglo de objetos con la info que necesito de cada pokemon.
+                    id: response.data.id,
+                    name: response.data.name,
+                    hp: response.data.stats[0].base_stat,
+                    attack: response.data.stats[1].base_stat,
+                    defense: response.data.stats[2].base_stat,
+                    speed: response.data.stats[5].base_stat,
+                    height: response.data.height,
+                    weight: response.data.weight,
+                    sprite: response.data.sprites.other.dream_world.front_default,
+                    types: response.data.types.length < 2 
+                        ? [{name: response.data.types[0].type.name}] 
+                        : [{name: response.data.types[0].type.name}, {name: response.data.types[1].type.name}] 
+            };
+            return res.json(pokemon);
+        }
+    } catch(error) {
+        next(error); //va al siguiente middleware q es el control de errores
+    }
+});
 
 
 
