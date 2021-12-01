@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function charCard({ name, image, type, hp, attack, defense, speed, height, weight}) {
+export default function Card({ name, image, type, hp, attack, defense, speed, height, weight}) {
     return(
         <div>
             <h3>{name}</h3>

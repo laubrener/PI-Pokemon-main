@@ -2,6 +2,15 @@
   text-align: center;
 }
 
+.background-image {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -100;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
