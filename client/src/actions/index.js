@@ -6,11 +6,12 @@ export const GET_POKEMON = 'GET_POKEMON';
 export function getPokemon(){
     return async function(dispatch) {
         try {
-            const json = await axios.get('http://localhost:3001/pokemon', {});
+            const json = await axios.get('http://localhost:3001/api/pokemon/');
             return dispatch({
                 type: GET_POKEMON,
                 payload: json.data
             });
+            
         } catch(error) {
             console.log(error);
         }
