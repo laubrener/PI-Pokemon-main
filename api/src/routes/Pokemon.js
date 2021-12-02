@@ -28,7 +28,7 @@ const getApiInfo = async () => { //va a llamar al endpoint de la api y trae toda
                         speed: p.stats[5].base_stat,
                         height: p.height,
                         weight: p.weight,
-                        Image: p.sprites.other.dream_world.front_default,
+                        image: p.sprites.other.dream_world.front_default,
                         types: p.types.length < 2 ? [{name: p.types[0].type.name}] : [{name: p.types[0].type.name}, {name: p.types[1].type.name}],
                     })
                 });
