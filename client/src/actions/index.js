@@ -3,6 +3,7 @@ import axios from 'axios';
 export const GET_POKEMON = 'GET_POKEMON';
 export const GET_TYPES = 'GET_TYPES';
 export const GET_POKEMON_BY_NAME = 'GET_POKEMON_BY_NAME';
+export const GET_DETAIL = 'GET_DETAIL';
 export const POST_POKEMON = 'POST_POKEMON';
 export const FILTER_BY_TYPE = 'FILTER_BY_TYPE';
 export const FILTER_CREATED = 'FILTER_CREATED';
@@ -57,6 +58,21 @@ export function getPokemonByName(name){
             const json = await axios.get('http://localhost:3001/api/pokemon?name=' + name);
             return dispatch({
                 type: GET_POKEMON_BY_NAME,
+                payload: json.data
+            });
+            
+        } catch(error) {
+            console.log(error);
+        }
+    }
+};
+
+export function getDetail(id){
+    return async function(dispatch) {
+        try {
+            const json = await axios.get('http://localhost:3001/api/pokemon/' + id);
+            return dispatch({
+                type: GET_DETAIL,
                 payload: json.data
             });
             

@@ -1,9 +1,10 @@
-import { GET_POKEMON, GET_TYPES, GET_POKEMON_BY_NAME, FILTER_BY_TYPE, POST_POKEMON, FILTER_CREATED, ORDER_BY_NAME } from "../actions";
+import { GET_POKEMON, GET_TYPES, GET_POKEMON_BY_NAME, GET_DETAIL, FILTER_BY_TYPE, POST_POKEMON, FILTER_CREATED, ORDER_BY_NAME } from "../actions";
 
 const initialState = {
     pokemon: [],
     allTypes: [],
-    allPokemon: []
+    allPokemon: [],
+    detail: []
 }
 
 function rootReducer(state = initialState, action) {
@@ -66,6 +67,11 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 pokemon: sortedArr
+            }
+        case GET_DETAIL:
+            return{
+                ...state,
+                detail: action.payload
             }
         default:
             return state;

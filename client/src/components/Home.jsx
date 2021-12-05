@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Card from './Card'
 import Pagination from './Pagination';
 import SearchBar from './SearchBar';
+import PokemonCreate from './PokemonCreate';
 
 
 export default function Home(){
@@ -53,7 +54,7 @@ export default function Home(){
 
     return(
         <div>
-            <Link to = '/home'>Crear personaje</Link>
+            <Link to = '/pokemon'>Crear personaje</Link>
             <h1>Pokemon</h1>
             <button onClick={e => {handleClick(e)}}>
                 volver a cargar los pokemon
