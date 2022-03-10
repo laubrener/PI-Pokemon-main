@@ -1,17 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetail } from "../actions";
 import { useEffect } from "react";
-import { useParams } from "react-router";
+
 
 export default function Detail(props){
-    console.log(props);
     const dispatch = useDispatch();
     const { id } = useParams();
+    console.log(props);
 
     useEffect(() => {
-        dispatch(getDetail(props.id)); // todavia no funciona, me trae loading
+        dispatch(getDetail(id)); 
     },[dispatch]);
 
     const myPokemon = useSelector((state) => state.detail);
@@ -19,11 +19,11 @@ export default function Detail(props){
     return (
         <div>
             {
-                myPokemon.length > 0 ?
+                myPokemon.length ?
                 <div>
                     <h1>Soy {myPokemon[0].name}</h1>
                     <img src={myPokemon[0].image} alt="Imagen" />
-                    <h4>Type: {myPokemon[0].types}</h4>
+                    <h4>Type: {myPokemon[0].types.map(el => el.name + (' '))}</h4>
                 </div>
                 : <p>Loading...</p>
             }

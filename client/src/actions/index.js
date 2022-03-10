@@ -83,7 +83,6 @@ export function getDetail(id){
 };
 
 export function filterPokemonByType(payload){
-    console.log(payload)
     return {
         type: FILTER_BY_TYPE,
         payload

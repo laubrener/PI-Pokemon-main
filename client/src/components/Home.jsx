@@ -6,13 +6,14 @@ import { Link } from 'react-router-dom';
 import Card from './Card'
 import Pagination from './Pagination';
 import SearchBar from './SearchBar';
-import PokemonCreate from './PokemonCreate';
+
 
 
 export default function Home(){
     const dispatch = useDispatch(); //igual a mapDispatchToProps
     const allPokemon = useSelector((state) => state.pokemon); // igual a mapStateToProps
     const allTypes = useSelector((state) => state.allTypes);
+
     const [order, setOrder] = useState(''); //genero un estado local vacio para guardar ahi el ordenamiento
     const [currentPage, setCurrentPage] = useState(1); //guarde en un estado local la pagina actual que es 1
     const [pokemonsPerPage, setPokemonsPerPage] = useState(12); //guarde cuantos pokemon quiero por pagina
@@ -100,20 +101,31 @@ export default function Home(){
                     />
                 </div>
                 <SearchBar/>
-                {currentPokemons?.map(p => {
+                {currentPokemons ? currentPokemons.map((p, i) => {
                     return(
-                        <div>
+                        <div key={i}>
                             <Link to={'/home/'+ p.id}>
                                 <Card 
                                     name={p.name} 
                                     image={p.image} 
                                     types={p.types.map(e => e.name + ' ')} 
-                                    key={p.id}>
+                                    >
                                 </Card>
                             </Link>
                         </div>
                     );  
-                })}
+                }) :
+                <div>
+                    <Link to={'/home/' + allPokemon.id}>
+                        <Card 
+                            name={allPokemon.name} 
+                            types={allPokemon.types.map(el => el.name + (' '))}
+                            image={allPokemon.image} 
+                            key={allPokemon.id}>
+                        </Card>
+                    </Link>
+                </div>
+                }
             </div>
         </div>
     );

@@ -79,23 +79,22 @@ router.get('/', async (req, res, next) => {
     }
 });
 
-//funciona para id de la bd pero no para la api
-// router.get('/:id', async (req, res) => {
-//     const {id} = req.params;
-//     const allPokemon = await getAllPokemon();
-//     try {
-//         if (id) {
-//             let pokeId = await allPokemon.filter(p => p.id === id);
-//             if (pokeId.length) {
-//                 return res.status(200).json(pokeId);
-//             } else {
-//                 return res.status(404).send('No existe ese pokemon');
-//             }
-//         }
-//     } catch(error){
-//         next(error);
-//     }
-// });
+router.get('/:id', async (req, res) => {
+    const {id} = req.params;
+    const allPokemon = await getAllPokemon();
+    try {
+        if (id) {
+            let pokeId = await allPokemon.filter(p => p.id.toString() === id.toString());
+            if (pokeId.length) {
+                return res.status(200).json(pokeId);
+            } else {
+                return res.status(404).send('No existe ese pokemon');
+            }
+        }
+    } catch(error){
+        next(error);
+    }
+});
 
 router.post('/', async (req, res, next) => { 
     try {
@@ -108,7 +107,7 @@ router.post('/', async (req, res, next) => {
             weight,
             image,
             createdInDb,
-            type
+            types
         } = req.body;
         let newPokemon = await Pokemon.create({
             name,
@@ -122,7 +121,7 @@ router.post('/', async (req, res, next) => {
             createdInDb
         });
         let typeDb = await Type.findAll({
-            where: {name: type}
+            where: {name: types}
         });
         newPokemon.addType(typeDb);
         res.status(201).send('Personaje creado con exito');
@@ -131,40 +130,6 @@ router.post('/', async (req, res, next) => {
     }
     
 });
-
-//funciona pero me trae todos los datos del pokemon, no solo los q yo quiero
-router.get('/:id', async (req, res, next) => { // buscar por id un pokemon
-    try {
-        const id = req.params.id;
-        let pokemonId;
-        if (typeof id === 'string' && id.length > 5) {
-            // es mio
-            pokemonId = await Pokemon.findByPk(id);
-            return res.send(pokemonId);
-        } else {
-            // es de la api
-            let response = await axios.get('https://pokeapi.co/api/v2/pokemon/' + id);
-            let pokemon = { // Genero un arreglo de objetos con la info que necesito de cada pokemon.
-                    id: response.data.id,
-                    name: response.data.name,
-                    hp: response.data.stats[0].base_stat,
-                    attack: response.data.stats[1].base_stat,
-                    defense: response.data.stats[2].base_stat,
-                    speed: response.data.stats[5].base_stat,
-                    height: response.data.height,
-                    weight: response.data.weight,
-                    sprite: response.data.sprites.other.dream_world.front_default,
-                    types: response.data.types.length < 2 
-                        ? [{name: response.data.types[0].type.name}] 
-                        : [{name: response.data.types[0].type.name}, {name: response.data.types[1].type.name}] 
-            };
-            return res.json(pokemon);
-        }
-    } catch(error) {
-        next(error); //va al siguiente middleware q es el control de errores
-    }
-});
-
 
 
 module.exports = router;

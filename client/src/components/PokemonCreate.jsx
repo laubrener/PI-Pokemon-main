@@ -57,15 +57,6 @@ export default function PokemonCreate(){
         }));
     };
 
-    // function handleCheck(e){
-    //     if (e.target.checked) {
-    //         setInput({
-    //             ...input,
-    //             status: e.target.value
-    //         })
-    //     }
-    // };
-
     function handleSelect(e){ //todo lo que vaya seleccionando guardamelo en un arreglo
         setInput({
             ...input,
@@ -124,7 +115,7 @@ export default function PokemonCreate(){
                         type="text"
                         value={input.image}
                         name='image'
-                        onChange={handleChange}
+                        onChange={(e) => handleChange(e)}
                     />
                 </div>
                 <div>
@@ -133,7 +124,7 @@ export default function PokemonCreate(){
                         type="number"
                         value={input.hp}
                         name='hp'
-                        onChange={handleChange}
+                        onChange={(e) => handleChange(e)}
                     />
                 </div>
                 <div>
@@ -142,7 +133,7 @@ export default function PokemonCreate(){
                         type="number"
                         value={input.attack}
                         name='attack'
-                        onChange={handleChange}
+                        onChange={(e) => handleChange(e)}
                     />
                 </div>
                 <div>
@@ -151,7 +142,7 @@ export default function PokemonCreate(){
                         type="number"
                         value={input.defense}
                         name='defense'
-                        onChange={handleChange}
+                        onChange={(e) => handleChange(e)}
                     />
                 </div>
                 <div>
@@ -160,7 +151,7 @@ export default function PokemonCreate(){
                         type="number"
                         value={input.speed}
                         name='speed'
-                        onChange={handleChange}
+                        onChange={(e) => handleChange(e)}
                     />
                 </div>
                 <div>
@@ -169,7 +160,7 @@ export default function PokemonCreate(){
                         type="number"
                         value={input.height}
                         name='height'
-                        onChange={handleChange}
+                        onChange={(e) => handleChange(e)}
                     />
                 </div>
                 <div>
@@ -178,20 +169,10 @@ export default function PokemonCreate(){
                         type="number"
                         value={input.weight}
                         name='weight'
-                        onChange={handleChange}
+                        onChange={(e) => handleChange(e)}
                     />
                 </div>
-                {/* <div>
-                    <label>Tipo:</label>
-                    <label>
-                        <input 
-                            type="checkbox"
-                            value='normal'
-                            name='normal'
-                        />
-                        Normal
-                    </label>
-                </div> */}
+                
                 <select onChange={(e) => handleSelect(e)}>
                     {types.map((t) => (
                         <option value={t.name}>{t.name}</option>

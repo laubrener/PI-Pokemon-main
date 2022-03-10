@@ -27,12 +27,14 @@ function rootReducer(state = initialState, action) {
             }
         case FILTER_BY_TYPE:
             const allPokemon = state.allPokemon;
-            const typeFiltered = action.payload === 'all' 
-                ? allPokemon
-                : allPokemon.filter(el => el.types.map(el => el.name === action.payload));
+            const typeFiltered = allPokemon.filter(el => {
+                let thisTypes = el.types.map(el => el.name);
+                return thisTypes.includes(action.payload);
+            });
+            console.log(action.payload)
             return{
                 ...state,
-                pokemon: typeFiltered
+                pokemon: action.payload === 'all'? state.allPokemon : typeFiltered
             }
         case GET_TYPES:
             return {
@@ -55,14 +57,22 @@ function rootReducer(state = initialState, action) {
         case ORDER_BY_NAME:
             const sortedArr = action.payload === 'asc'
                 ? state.pokemon.sort(function (a, b) {
-                    if (a.name > b.name) return 1;
-                    else if (b.name > a.name) return -1;
-                    else return 0;
+                    if (a.name > b.name){
+                        return 1;
+                    }
+                    if (b.name > a.name){
+                        return -1;
+                    }
+                    return 0
                 })
                 : state.pokemon.sort(function (a, b) {
-                    if (a.name > b.name) return -1;
-                    else if (b.name > a.name) return 1;
-                    else return 0;
+                    if (a.name > b.name){
+                        return -1;
+                    }
+                    if (b.name > a.name){
+                        return 1;
+                    }
+                    return 0
                 })
             return {
                 ...state,
