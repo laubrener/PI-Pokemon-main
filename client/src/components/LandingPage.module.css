@@ -1,0 +1,19 @@
+.btn {
+    width: 220px;
+    height: 86px;
+    border-style: solid;
+    border-radius: 35px;
+    border-width: 16px;
+    border-color: #375F8C;
+    color: #375F8C;
+    background-color: #FFCB03;
+    font-weight: bold;
+    font-size: 26px;
+    margin-top: 446px;
+    margin-left: 600px;
+}
+
+.btn:hover {
+    background-color: #ffd738;
+    font-size: 28px;
+}
