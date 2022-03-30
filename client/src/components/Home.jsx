@@ -108,7 +108,7 @@ export default function Home(){
                 </div>
                 </div>
                 <div className={styles.two}>
-                    {currentPokemons ? currentPokemons.map((p, i) => {
+                    {currentPokemons.length ? currentPokemons.map((p, i) => {
                         return(
                             <div className={styles.cards} key={i}>
                                 <Link to={'/home/'+ p.id}>
@@ -122,16 +122,9 @@ export default function Home(){
                             </div>
                         );  
                     }) :
-                    <div>
-                        <Link to={'/home/' + allPokemon.id}>
-                            <Card 
-                                name={allPokemon.name} 
-                                types={allPokemon.types.map(el => el.name + (' '))}
-                                image={allPokemon.image} 
-                                key={allPokemon.id}>
-                            </Card>
-                        </Link>
-                    </div>
+                    <p className={styles.loading}>
+                        Loading...
+                    </p>
                     }
                 </div>
         </div>

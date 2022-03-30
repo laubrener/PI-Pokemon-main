@@ -1,3 +1,11 @@
+.loading{
+    color: #365A9F;
+    font-size: 30px;
+    font-weight: 900;
+    margin-top: 150px;
+    margin-left: 70px;
+}
+
 .filters {
     box-sizing: border-box;
     padding-top: 20px;

@@ -36,11 +36,6 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 pokemon: action.payload === 'all'? state.allPokemon : typeFiltered
             }
-        case GET_TYPES:
-            return {
-                ...state,
-                allTypes: action.payload
-            }
         case POST_POKEMON:
             return {
                 ...state

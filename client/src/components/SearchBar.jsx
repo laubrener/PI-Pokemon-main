@@ -17,13 +17,14 @@ export default function SearchBar(){
     function handleSubmit(e){
         e.preventDefault();
         dispatch(getPokemonByName(name));
-        //setName(''); buscar como hacer para que borre el nombre despues de buscar
+        setName(''); 
     };
     
     return (
         <div className={styles.searchBar}>
             <input 
             className={styles.input}
+            value={name} 
             type="text"
             placeholder='Search by name...' 
             onChange={(e) => {handleInputChange(e)}}
