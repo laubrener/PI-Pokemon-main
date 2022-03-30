@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Card from './Card'
 import Pagination from './Pagination';
 import SearchBar from './SearchBar';
+import styles from './Home.module.css';
 
 
 
@@ -20,7 +21,7 @@ export default function Home(){
     const indexOfLastPokemon = currentPage * pokemonsPerPage; // 12
     const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage; //0
     const currentPokemons = allPokemon.slice(indexOfFirstPokemon, indexOfLastPokemon); //los pokemon que van a estar en la pagina actual
-    
+
     const pagination = (pageNumber) => { //me va a ayudar al renderizado
         setCurrentPage(pageNumber);
     }
@@ -54,18 +55,26 @@ export default function Home(){
     };
 
     return(
-        <div>
-            <Link to = '/pokemon'>Crear personaje</Link>
-            <h1>Pokemon</h1>
-            <button onClick={e => {handleClick(e)}}>
-                volver a cargar los pokemon
-            </button>
-            <div>
-                <select onChange={e => {handleSort(e)}}>
-                    <option value='asc'>Ascendente</option> 
-                    <option value='desc'>Descendente</option>
+        <div className={styles.page}>
+            <div className={styles.one}>
+                <img className={styles.title} src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1200px-International_Pok%C3%A9mon_logo.svg.png" alt="pokemon" />
+                <SearchBar/>
+                <div className={styles.pagination}>
+                    <Pagination
+                        pokemonsPerPage={pokemonsPerPage}
+                        allPokemon={allPokemon.length}
+                        pagination={pagination}
+                    />
+                </div>
+            
+            <div className={styles.filters}>
+                <Link to = '/pokemon' className={styles.create}>Create Pokemon</Link>
+                <h3 className={styles.text}>Filters</h3>
+                <select className={styles.select} onChange={e => {handleSort(e)}}>
+                    <option value='asc'>A to Z</option> 
+                    <option value='desc'>Z to A</option>
                 </select>
-                <select className='select' onChange={e => {handleFilterType(e)}}>
+                <select className={styles.select} onChange={e => {handleFilterType(e)}}>
                     <option value = 'all'>All types</option>
                     <option value = 'normal'>Normal</option>
                     <option value = 'fighting'>Fighting</option>
@@ -88,45 +97,43 @@ export default function Home(){
                     <option value = 'unknown'>Unknown</option>
                     <option value = 'shadow'>Shadow</option>
                 </select>
-                <select onChange={e => {handleFilterCreated(e)}}>
-                    <option value='all'>Todos</option>
-                    <option value='created'>Creados</option>
-                    <option value='api'>Existente</option>
+                <select className={styles.select} onChange={e => {handleFilterCreated(e)}}>
+                    <option value='all'>All</option>
+                    <option value='created'>Created</option>
+                    <option value='api'>Existant</option>
                 </select>
-                <div>
-                    <Pagination
-                        pokemonsPerPage={pokemonsPerPage}
-                        allPokemon={allPokemon.length}
-                        pagination={pagination}
-                    />
+                <button className={styles.load} onClick={e => {handleClick(e)}}>
+                Load all Pokemon
+                </button>
                 </div>
-                <SearchBar/>
-                {currentPokemons ? currentPokemons.map((p, i) => {
-                    return(
-                        <div key={i}>
-                            <Link to={'/home/'+ p.id}>
-                                <Card 
-                                    name={p.name} 
-                                    image={p.image} 
-                                    types={p.types.map(e => e.name + ' ')} 
-                                    >
-                                </Card>
-                            </Link>
-                        </div>
-                    );  
-                }) :
-                <div>
-                    <Link to={'/home/' + allPokemon.id}>
-                        <Card 
-                            name={allPokemon.name} 
-                            types={allPokemon.types.map(el => el.name + (' '))}
-                            image={allPokemon.image} 
-                            key={allPokemon.id}>
-                        </Card>
-                    </Link>
                 </div>
-                }
-            </div>
+                <div className={styles.two}>
+                    {currentPokemons ? currentPokemons.map((p, i) => {
+                        return(
+                            <div className={styles.cards} key={i}>
+                                <Link to={'/home/'+ p.id}>
+                                    <Card 
+                                        name={p.name} 
+                                        image={p.image} 
+                                        types={p.types.map(e => e.name + ' ')} 
+                                        >
+                                    </Card>
+                                </Link>
+                            </div>
+                        );  
+                    }) :
+                    <div>
+                        <Link to={'/home/' + allPokemon.id}>
+                            <Card 
+                                name={allPokemon.name} 
+                                types={allPokemon.types.map(el => el.name + (' '))}
+                                image={allPokemon.image} 
+                                key={allPokemon.id}>
+                            </Card>
+                        </Link>
+                    </div>
+                    }
+                </div>
         </div>
     );
 }

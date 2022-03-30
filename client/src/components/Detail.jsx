@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetail } from "../actions";
 import { useEffect } from "react";
+import styles from './Detail.module.css';
 
 // [ ] Los campos mostrados en la ruta principal para cada pokemon (imagen, nombre y tipos)
 // [ ] Número de Pokemon (id)
@@ -20,26 +21,52 @@ export default function Detail(props){
     const myPokemon = useSelector((state) => state.detail);
 
     return (
-        <div>
+        <div className={styles.page}>
             {
                 myPokemon.length ?
-                <div>
-                    <h4>Pokemon number {myPokemon[0].id}</h4>
-                    <h1>{myPokemon[0].name}</h1>
-                    <img src={myPokemon[0].image} alt="Imagen" />
-                    <h4>HP: {myPokemon[0].hp}</h4>
-                    <h4>Speed: {myPokemon[0].speed}</h4>
-                    <h4>Attack: {myPokemon[0].attack}</h4>
-                    <h4>Defense: {myPokemon[0].defense}</h4>
-                    <h4>Height: {myPokemon[0].height}</h4>
-                    <h4>Weight: {myPokemon[0].weight}</h4>
-                    <h4>Type: {myPokemon[0].types.map(el => el.name + (' '))}</h4>
+                <div className={styles.card}>
+                    <div className={styles.title}>
+                        <h1 className={styles.name}>{myPokemon[0].name}</h1>
+                        <Link to='/home'>
+                            <button className={styles.close}>X</button>
+                        </Link>
+                    </div>
+                    <div className={styles.imgCar}>
+                        <img className={styles.img} src={myPokemon[0].image} alt="Imagen" />
+                        <div className={styles.boxCs}>
+                            <div className={styles.miniBox}>
+                                <h4 className={styles.car}>HP: </h4>
+                                <div className={styles.div}>{myPokemon[0].hp}</div>
+                            </div>
+                            <div className={styles.miniBox}>
+                                <h4 className={styles.car}>Speed: </h4>
+                                <div className={styles.div}>{myPokemon[0].speed}</div>
+                            </div>
+                            <div className={styles.miniBox}>
+                                <h4 className={styles.car}>Attack: </h4>
+                                <div className={styles.div}>{myPokemon[0].attack}</div>
+                            </div>
+                            <div className={styles.miniBox}>
+                                <h4 className={styles.car}>Defense: </h4>
+                                <div className={styles.div}>{myPokemon[0].defense}</div>
+                            </div>
+                            <div className={styles.miniBox}>
+                                <h4 className={styles.car}>Height: </h4>
+                                <div className={styles.div}>{myPokemon[0].height}</div>
+                            </div>
+                            <div className={styles.miniBox}>
+                                <h4 className={styles.car}>Weight: </h4>
+                                <div className={styles.div}>{myPokemon[0].weight}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={styles.numType}>
+                        <h4 className={styles.number}>{myPokemon[0].createdInDb ? '' : myPokemon[0].id}</h4>
+                        <h4 className={styles.type}>Type: {myPokemon[0].types.map(el => el.name + (' '))}</h4>
+                    </div>
                 </div>
-                : <p>Loading...</p>
+                : <p className={styles.loading}>Loading...</p>
             }
-            <Link to='/home'>
-                <button>Volver</button>
-            </Link>
-        </div>
-    )
+            </div>
+    );
 }

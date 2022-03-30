@@ -1,0 +1,157 @@
+.filters {
+    box-sizing: border-box;
+    padding-top: 20px;
+    
+    position: absolute;
+    right: 0%;
+    display: block;
+    justify-content: center;
+    
+
+    background-color: #FFFF6D;
+    border-style: solid;
+    border-width: 6px;
+    border-radius: 36px;
+    border-color: #365A9F;
+    color: #365A9F;
+    font-size: 18px;
+    font-weight: bold;
+    width: 230px;
+    height: 100vh;
+}
+
+.create, .load, .select{
+    margin-bottom: 40px;
+    width: 190px;
+    height: 40px;
+    background-color: #FFD924;
+    border-style: solid;
+    border-width: 6px;
+    border-radius: 36px;
+    border-color: #365A9F;
+    text-decoration: none;
+    color: #365A9F;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.text {
+    margin-top: 140px;
+}
+
+.load {
+    margin-top: 80px;
+}
+
+.create {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    height: 40px;
+}
+
+.create:hover, .load:hover {
+    background-color: #FFFF6D;
+}
+
+
+.title{
+    width: 120px;
+    margin: 20px;
+}
+
+.select {
+    text-align-last:center;
+    height: 40px;
+    padding: 0;
+    text-align: center;
+    -ms-text-align-last: center;
+    -moz-text-align-last: center;
+}
+
+.pagination {
+    margin-left: 50px;
+    margin-right: 200px;
+}
+
+.number {
+    background-color: #FFFF6D;
+    border-style: solid;
+    border-width: 6px;
+    border-radius: 10px;
+    border-color: #365A9F;
+    color: #365A9F;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.number:hover{
+    background-color: #FFD924;
+}
+
+.number:focus {
+    outline: none;
+    color: #FFFF6D;
+    background: #365A9F;
+  }
+
+.searchBar {
+  display: flex;
+  align-items: center;
+}
+
+.input {
+    width: 425px;
+    background-color: #FFFF6D;
+    border-style: solid;
+    border-width: 6px;
+    border-radius: 36px;
+    border-color: #365A9F;
+    color: #365A9F;
+    font-size: 14px;
+    padding-left: 15px;
+    margin-top: -10px;
+}
+
+.btn {
+    font-size: 16px;
+    color: #365A9F;
+    background-color: #FFFF6D;
+
+    border-color: transparent;
+    border-radius: 36px;
+    padding-top: 4px;
+    padding-bottom: 2px;
+    margin-left: -45px;
+    cursor: pointer;
+}
+
+.btn:hover{
+ background-color: #FFD924;
+}
+
+.cards {
+    position: relative;
+    display: inline-block;
+}
+
+.one{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    height: 86px;
+}
+
+.two{
+    display: block;
+    position: absolute;
+
+    width: 1120px;
+    text-decoration: none;
+    margin-top: 40px;
+    margin-left: -35px;
+}

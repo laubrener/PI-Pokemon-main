@@ -1,17 +1,14 @@
 import React from "react";
+import styles from './Card.module.css';
 
-export default function Card({ name, image, types, hp, attack, defense, speed, height, weight}) {
+export default function Card({ name, image, types}) {
     return( //va a ser lo que quiero que se vea en el home
-        <div>
-            <h3>{name}</h3>
-            <h5>{types}</h5>
-            <img src={image} alt='imagen del pokemon' width='200px' height='250px' />
-            <h6>{hp}</h6>
-            <h6>{attack}</h6>
-            <h6>{defense}</h6>
-            <h6>{speed}</h6>
-            <h6>{height}</h6>
-            <h6>{weight}</h6>
+        <div className={styles.card}>
+            <div className={styles.blue}>
+            <img src={image} alt='imagen del pokemon' className={styles.img} />
+            <h3 className={styles.name}>{name}</h3>
+            <h5 className={styles.types}>{types}</h5>
+            </div>
         </div>
     );
 }

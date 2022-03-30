@@ -1,0 +1,38 @@
+.searchBar {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  grid-column: 2;
+  grid-row: 1;
+  margin-top: -530px;
+}
+
+.input {
+    width: 425px;
+    height: 40px;
+    background-color: #FFFF6D;
+    border-style: solid;
+    border-width: 6px;
+    border-radius: 36px;
+    border-color: #365A9F;
+    color: #365A9F;
+    font-size: 14px;
+    padding-left: 15px;
+}
+
+.btn {
+    font-size: 16px;
+    color: #365A9F;
+    background-color: #FFFF6D;
+
+    border-color: transparent;
+    border-radius: 36px;
+    padding-top: 4px;
+    padding-bottom: 2px;
+    margin-left: -45px;
+    cursor: pointer;
+}
+
+.btn:hover{
+ background-color: #FFD924;
+}

@@ -1,0 +1,112 @@
+.page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.loading{
+    color: #365A9F;
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.card{
+    width: 600px;
+    height: 470px;
+    border-style: solid;
+    border-width: 6px;
+    border-radius: 100px;
+    border-color: #365A9F;
+    color: #365A9F;
+    background-color: #FFFF6D;
+
+}
+
+.title{
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+}
+
+.name{
+    text-transform: uppercase;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.number, .div, .close, .type{
+    box-sizing: border-box;
+    color: #365A9F;
+    font-size: 16px;
+    font-weight: 900;
+    border-style: solid;
+    border-radius: 20px;
+    border-width: 6px;
+    border-color: #365A9F;
+    background-color: #FFD924;
+    width: 40px;
+    height: 40px;
+    padding: 3px;
+}
+
+.div{
+    width: 60px;
+}
+.close{
+    color: red;
+    background-color: #FFFF6D;
+    margin-left: 200px;
+    cursor: pointer;
+}
+
+.close:hover{
+    background-color: #FFD924;
+}
+
+.imgCar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.img{
+   width: 220px;
+   height: 220px; 
+}
+
+.boxCs{
+    box-sizing: border-box;
+    /* background-color: aliceblue; */
+    width: 190px;
+    height: 300px;
+    display: grid;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.miniBox{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    text-transform: uppercase;
+    font-size: 16px;
+    margin-top: -11.5px;
+}
+
+.div{
+    margin-left: 60px;
+}
+
+.numType{
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.type{
+    width: 224px;
+    text-transform: uppercase;
+    margin-left: 150px;
+}
